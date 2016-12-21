@@ -28,7 +28,7 @@ export default class ZSet {
 	}
 
 	rank(data){
-		var stored = _.findWhere(this.store, { value: data })
+		var stored = _.find(this.store, { value: data })
 		return data.score
 	}
 }
