@@ -23,4 +23,19 @@ describe('RedisClone', () => {
 		expect(value).to.equal('"thing data"')
 		expect(redis.store.thing).to.equal('"updated"')
 	})
+
+	it('should return "nil" when acessing an undefined value within a hash', () => {
+		var result = redis.hget('hash', 'hashKey')
+		expect(result).to.equal('nil')
+	})
+
+	it('should allow hset to set a value at a key within a hash', () => {
+		var result = redis.hset('hash', 'hashKey', 'hashValue')
+		expect(result).to.equal(1)
+	})
+
+	it('should allow the hget command to get the value at the key in a hash', () => {
+		var result = redis.hget('hash', 'hashKey')
+		expect(result).to.equal('hashValue')
+	})
 })

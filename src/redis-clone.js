@@ -48,6 +48,10 @@ export default class RedisClone {
 
 		var result = this.hashes[hashName][hashKey]
 
+		if(_.isUndefined(result)){
+			return 'nil'
+		}
+		
 		return result
 
 	}
