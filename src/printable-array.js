@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export default function printArray(hash){
 	var i = 0
 
