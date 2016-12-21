@@ -45,5 +45,22 @@ describe('RedisClone', () => {
 2) "hashValue"`)
 	})
 
-	
+	it('should have allow items to be added with the zadd command', () => {
+		var result = redis.zadd('testSet', 1, 'data')
+		expect(result).to.equal(1)
+	})
+
+	it('should overwrite the same object in a set', () => {
+		var result = redis.zadd('testSet', 3, 'data')
+		expect(result).to.equal(1)
+	})
+
+	it('should return the size of the set', () => {
+		var result = redis.zadd('testSet', 2, 'datad')
+		var size = redis.zcard('testSet')
+		expect(result).to.equal(1)
+		expect(size).to.equal(2)
+	})
+
+
 })

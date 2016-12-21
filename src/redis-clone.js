@@ -91,6 +91,7 @@ export default class RedisClone {
 		return result
 	}
 
+	// This should force the score to be an integer and throw a fit if it fails that test.
 	zadd(setName, score, data){
 		data = JSON.stringify(data)
 
