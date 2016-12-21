@@ -36,6 +36,6 @@ describe('RedisClone', () => {
 
 	it('should allow the hget command to get the value at the key in a hash', () => {
 		var result = redis.hget('hash', 'hashKey')
-		expect(result).to.equal('hashValue')
+		expect(result).to.equal('"hashValue"')
 	})
 })
