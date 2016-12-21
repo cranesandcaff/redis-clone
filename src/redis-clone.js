@@ -28,6 +28,7 @@ export default class RedisClone {
 	}
 
 	getset(key, data){
+		data = JSON.stringify(data)
 		var previous = this.store[key]
 
 		if(_.isUndefined(previous)){
@@ -112,7 +113,7 @@ export default class RedisClone {
 	}
 
 	zcard(setName){
-		
+
 		if(_.isUndefined(setName)){
 			return 'nil'
 		}
