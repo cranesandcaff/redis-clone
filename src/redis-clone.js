@@ -51,6 +51,9 @@ export default class RedisClone {
 
 		if(_.isUndefined(hash)){
 			this.hashes[hashName] = {}
+		}
+
+		if(_.isUndefined(hash[hashKey])){
 			result = 1
 		} else {
 			result = 0
