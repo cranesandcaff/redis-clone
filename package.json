@@ -1,0 +1,19 @@
+{
+  "name": "redis-clone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-runtime": "^6.20.0"
+  },
+  "devDependencies": {
+    "babel-register": "^6.18.0"
+  }
+}
