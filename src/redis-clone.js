@@ -112,6 +112,11 @@ export default class RedisClone {
 	}
 
 	zcard(setName){
+		
+		if(_.isUndefined(setName)){
+			return 'nil'
+		}
+
 		var set = this.sets[setName]
 
 		if(_.isUndefined(set)){
