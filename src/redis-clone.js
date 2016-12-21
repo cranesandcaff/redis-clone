@@ -48,12 +48,16 @@ export default class RedisClone {
 	hset(hashName, hashKey, value){
 		var result;
 		var hash = this.hashes[hashName]
-		
+
 		if(_.isUndefined(hash)){
 			this.hashes[hashName] = {}
+			result = 1
+		} else {
+			result = 0
 		}
 
 		this.hashes[hashName][hashKey] = JSON.stringify(value)
+		return result
 	}
 
 	hgetall(){
