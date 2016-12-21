@@ -1,9 +1,13 @@
 import _ from 'lodash'
 
+// Consider using immutable.js or ES6 maps/sets to offset some work?
+// Move printing array to it's own function. It's in use more than one spot.
+
 export default class RedisClone {
 	constructor(){
 		this.store  = {}
 		this.hashes = {}
+		this.sets   = {}
 	}
 
 	get(key){

@@ -7,6 +7,8 @@ const app   = vantage()
 
 const DEFAULT_PORT = 6379
 
+
+// Basic Map Commands
 app.command('get [key]')
 	.description('Get value by key')
 	.action(function(args, cb){
@@ -31,6 +33,8 @@ app.command('getset [key] [value]')
 		cb()
 	})
 
+
+// Hash Commands
 app.command('hget [hash] [key]')
 	.description('Get value stored in hash by key.')
 	.action(function(args, cb){
@@ -52,6 +56,40 @@ app.command('hgetall [hash]')
 	.action(function(args, cb){
 		var result = redis.hgetall(args.hash)
 		this.log(result)
+		cb()
+	})
+
+// Set Commands
+app.command('zadd [setName] [score] [value]')
+	.description('Add value to sorted set by score.')
+	.action(function(args, cb){
+		var result = redis.zadd(args.setName, args.score, args.value)
+		this.log(result)
+		cb()
+	})
+
+app.command('zrange [setName] [startingScore] [endingScore]')
+	.description('Returns the range of elements at setName ordered by lowest to highest score.')
+	.action(function(args, cb){
+		var result = redis.zrange(args.setName, args.startingScore, args.endingScore)
+		this.log(result)
+		cb()
+	})
+
+app.command('zcard [setName]')
+	.description('Returns the number of elements stored within the set at setName or key.')
+	.action(function(args, cb){
+		var result = redis.zcard(args.setName)
+		this.log(result)
+		cb()
+	})
+
+app.command('zrank [setName] [value]')
+	.description('Return the rank of the value within the set.')
+	.action(function(args, cb){
+		var result = redis.zrank(args.setName, args.score, args.value)
+		this.log(result)
+		cb()
 	})
 
 
