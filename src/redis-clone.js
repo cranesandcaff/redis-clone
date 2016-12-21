@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import ZSet from './z-set'
 import printableArray from './printable-array'
+import printableHash from './printable-hash'
+import printableSet from './printable-set'
 // Consider using immutable.js or ES6 maps/sets to offset some work?
 // Move printing array to it's own function. It's in use more than one spot.
 
@@ -79,16 +81,14 @@ export default class RedisClone {
 	}
 
 	hgetall(hashName){
-		var result;
 		var hash   = this.hashes[hashName]
 
 		if(_.isUndefined(hash)){
 			return 'nil'
 		}
 
-		result = printableArray(hash)
+		return printableHash(hash)
 
-		return result
 	}
 
 	// @TODO: This should force the score to be an integer and throw a fit if it fails that test.
@@ -116,7 +116,7 @@ export default class RedisClone {
 
 		var result = set.withinRange(start, end)
 
-		return printableArray(result)
+		return printableSet(result)
 	}
 
 	zcard(setName){

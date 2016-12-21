@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-export default function printArray(hash){
+export default function printableHash(hash){
 	var i = 0
 
 	var result = _.map(hash, (value, key) => {

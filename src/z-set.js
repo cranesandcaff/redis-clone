@@ -19,11 +19,10 @@ export default class ZSet {
 	}
 
 	withinRange(start, end){
-		var values = _.filter(this.store, (value) => {
+		return _.filter(this.store, (value) => {
 			return value.score >= start || value.score <= end
 		})
 
-		return _.map(values, v => v.value)
 	}
 
 	size(){
