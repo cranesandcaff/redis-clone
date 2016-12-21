@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import ZSet from './z-set'
 
 // Consider using immutable.js or ES6 maps/sets to offset some work?
 // Move printing array to it's own function. It's in use more than one spot.
@@ -49,7 +50,9 @@ export default class RedisClone {
 
 	}
 
-	hset(hashName, hashKey, value){
+	hset(hashName, hashKey, data){
+		data = JSON.stringify(data)
+
 		var result;
 		var hash = this.hashes[hashName]
 
@@ -63,7 +66,7 @@ export default class RedisClone {
 			result = 0
 		}
 
-		this.hashes[hashName][hashKey] = JSON.stringify(value)
+		this.hashes[hashName][hashKey] = data
 		return result
 	}
 
@@ -91,8 +94,15 @@ export default class RedisClone {
 		return result
 	}
 
-	zadd(){
-		return 'NOT IMPLEMENTED'
+	zadd(setName, score, data){
+		data = JSON.stringify(data)
+
+		var set = this.sets[setName]
+		if(_.isUndefined(set)){
+			this.sets[setName] = new ZSet()
+		}
+
+		this.sets[setName].add(data, score)
 	}
 
 	zrange(){
@@ -100,7 +110,13 @@ export default class RedisClone {
 	}
 
 	zcard(){
-		return 'NOT IMPLEMENTED'
+		var set = this.sets[setName]
+		
+		if(_.isUndefined(set)){
+			this.sets[setName] = new ZSet()
+		}
+
+		return set.size()
 	}
 
 	zrank(){
