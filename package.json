@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests --watch --compilers js:babel-core/register"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-polyfill": "^6.20.0",
     "babel-preset-latest": "^6.16.0",
     "babel-runtime": "^6.20.0",
     "lodash": "^4.17.2",
@@ -17,6 +18,8 @@
     "vantage-watch": "^1.0.2"
   },
   "devDependencies": {
-    "babel-register": "^6.18.0"
+    "babel-register": "^6.18.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }
