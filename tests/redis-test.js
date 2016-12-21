@@ -3,6 +3,7 @@ var chai = require('chai')
 var expect = chai.expect
 import RedisClone from '../src/redis-clone'
 
+// These aren't great tests, it's meant to just touch the surface on verifying the implementation.
 
 describe('RedisClone', () => {
 	const redis = new RedisClone()
@@ -69,8 +70,12 @@ describe('RedisClone', () => {
 3) "data"
 4) 3`
 
-	expect(result).to.equal(expected)
+		expect(result).to.equal(expected)
 	})
 
+	it('should provide a ranked value with zrank', () => {
+		var result = redis.zrank('testSet', 'data')
+		expect(result).to.equal(3)
+	})
 
 })
