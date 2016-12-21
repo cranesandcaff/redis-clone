@@ -60,8 +60,28 @@ export default class RedisClone {
 		return result
 	}
 
-	hgetall(){
+	hgetall(hashName){
+		var result;
+		var hash   = this.hashes[hashName]
 
+		if(_.isUndefined(hash)){
+			return 'nil'
+		}
+
+		var i = 0
+
+		result = _.map(hash, (value, key) => {
+			var innerResult = []
+			i = i + 1
+			innerResult.push(`${i}) ${key}`)
+			i = i + 1
+			innerResult.push(`${i}) ${value}`)
+			return innerResult.join('\n')
+		})
+
+		result = result.join('\n')
+
+		return result
 	}
 
 	zadd(){
