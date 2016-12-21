@@ -91,7 +91,7 @@ export default class RedisClone {
 		return result
 	}
 
-	// This should force the score to be an integer and throw a fit if it fails that test.
+	// @TODO: This should force the score to be an integer and throw a fit if it fails that test.
 	zadd(setName, score, data){
 		data = JSON.stringify(data)
 
@@ -102,7 +102,7 @@ export default class RedisClone {
 		}
 
 		this.sets[setName].add(data, score)
-		// This would return the number of items added, however we only allow a single item to be added so always returns one.
+		// @TODO: This would return the number of items added, however we only allow a single item to be added so always returns one.
 		return 1
 	}
 

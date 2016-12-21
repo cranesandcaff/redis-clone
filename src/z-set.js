@@ -14,6 +14,7 @@ export default class ZSet {
 		}
 
 		this.store.push(addition)
+		this.store = _.sortBy(this.store, 'score')
 		return this
 	}
 
@@ -31,6 +32,6 @@ export default class ZSet {
 
 	rank(data){
 		var stored = _.find(this.store, { value: data })
-		return data.score
+		return data[0].score
 	}
 }

@@ -55,11 +55,21 @@ describe('RedisClone', () => {
 		expect(result).to.equal(1)
 	})
 
-	it('should return the size of the set', () => {
+	it('should return the size of the set with zcard', () => {
 		var result = redis.zadd('testSet', 2, 'datad')
 		var size = redis.zcard('testSet')
 		expect(result).to.equal(1)
 		expect(size).to.equal(2)
+	})
+
+	it('should return a printed range with zrange', () => {
+		var result = redis.zrange('testSet', 0, 4)
+		var expected = `1) "datad"
+2) 2
+3) "data"
+4) 3`
+
+	expect(result).to.equal(expected)
 	})
 
 
