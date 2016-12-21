@@ -61,7 +61,7 @@ app.command('hgetall [hash]')
 
 // Set Commands
 app.command('zadd [setName] [score] [value]')
-	.description('Add value to sorted set by score.')
+	.description('Add value to sorted set by score. Only accepts a single value.')
 	.action(function(args, cb){
 		var result = redis.zadd(args.setName, args.score, args.value)
 		this.log(result)
@@ -92,6 +92,13 @@ app.command('zrank [setName] [value]')
 		cb()
 	})
 
+
+app.command('dump')
+	.description('Log stringified redis store with all values')
+	.action(function(args, cb){
+		this.log(JSON.stringify(redis, null, 2))
+		cb()
+	})
 
 app.delimiter('redis-clone: ')
 	.listen(DEFAULT_PORT)

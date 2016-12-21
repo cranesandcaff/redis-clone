@@ -103,6 +103,8 @@ export default class RedisClone {
 		}
 
 		this.sets[setName].add(data, score)
+
+		return 1
 	}
 
 	zrange(){
@@ -111,7 +113,7 @@ export default class RedisClone {
 
 	zcard(){
 		var set = this.sets[setName]
-		
+
 		if(_.isUndefined(set)){
 			this.sets[setName] = new ZSet()
 		}

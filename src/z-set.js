@@ -4,13 +4,9 @@ export default class ZSet {
 	constructor(){
 		this.store = []
 	}
-	
-	add(data, score){
-		var exists = _.includes(this.store, data)
 
-		if(exists){
-			this.store = _.reject(this.store, { value: data })
-		}
+	add(data, score){
+		this.store = _.reject(this.store, { value: data })
 
 		var addition = {
 			value: data,
