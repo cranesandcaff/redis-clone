@@ -38,4 +38,12 @@ describe('RedisClone', () => {
 		var result = redis.hget('hash', 'hashKey')
 		expect(result).to.equal('"hashValue"')
 	})
+
+	it('should retrieve entire hash as string from value', () => {
+		var result = redis.hgetall('hash')
+		expect(result).to.equal(`1) hashKey
+2) "hashValue"`)
+	})
+
+	
 })
