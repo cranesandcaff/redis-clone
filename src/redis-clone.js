@@ -1,8 +1,9 @@
 import _ from 'lodash'
 import ZSet from './z-set'
-
+import printableArray from './printable-array'
 // Consider using immutable.js or ES6 maps/sets to offset some work?
 // Move printing array to it's own function. It's in use more than one spot.
+
 
 export default class RedisClone {
 	constructor(){
@@ -78,18 +79,7 @@ export default class RedisClone {
 			return 'nil'
 		}
 
-		var i = 0
-
-		result = _.map(hash, (value, key) => {
-			var innerResult = []
-			i = i + 1
-			innerResult.push(`${i}) ${key}`)
-			i = i + 1
-			innerResult.push(`${i}) ${value}`)
-			return innerResult.join('\n')
-		})
-
-		result = result.join('\n')
+		result = printableArray(hash)
 
 		return result
 	}
@@ -98,6 +88,7 @@ export default class RedisClone {
 		data = JSON.stringify(data)
 
 		var set = this.sets[setName]
+
 		if(_.isUndefined(set)){
 			this.sets[setName] = new ZSet()
 		}
@@ -121,8 +112,16 @@ export default class RedisClone {
 		return set.size()
 	}
 
-	zrank(){
-		return 'NOT IMPLEMENTED'
+	zrank(setName, data){
+		data = JSON.stringify(data)
+		var set = this.sets[setName]
+
+		if(_.isUndefined(set)){
+			// @TODO: Verify that this matches the spec.
+			return 'nil'
+		}
+
+		return set.rank(data)
 	}
 
 }
