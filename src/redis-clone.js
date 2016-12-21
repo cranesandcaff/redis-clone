@@ -92,19 +92,19 @@ export default class RedisClone {
 	}
 
 	zadd(){
-
+		return 'NOT IMPLEMENTED'
 	}
 
 	zrange(){
-
+		return 'NOT IMPLEMENTED'
 	}
 
 	zcard(){
-
+		return 'NOT IMPLEMENTED'
 	}
 
 	zrank(){
-
+		return 'NOT IMPLEMENTED'
 	}
 
 }
