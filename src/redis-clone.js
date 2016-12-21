@@ -111,7 +111,7 @@ export default class RedisClone {
 		return printableArray(result)
 	}
 
-	zcard(){
+	zcard(setName){
 		var set = this.sets[setName]
 
 		if(_.isUndefined(set)){
