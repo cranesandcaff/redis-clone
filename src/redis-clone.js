@@ -94,12 +94,21 @@ export default class RedisClone {
 		}
 
 		this.sets[setName].add(data, score)
-
+		// This would return the number of items added, however we only allow a single item to be added so always returns one.
 		return 1
 	}
 
-	zrange(){
-		return 'NOT IMPLEMENTED'
+	zrange(setName, start, end){
+		var set = this.sets[setName]
+
+		if(_.isUndefined(set)){
+			// @TODO: Verify that this matches the spec.
+			return 'nil'
+		}
+
+		var result = set.withinRange(start, end)
+
+		return printableArray(result)
 	}
 
 	zcard(){
